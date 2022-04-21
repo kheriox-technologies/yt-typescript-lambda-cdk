@@ -4,7 +4,7 @@ This is a companion repo for my youtube video explaining the process of developi
 
 You can find all the command and related links I used in the video
 
-Youtube Video: 
+Youtube Video: https://youtu.be/DUNEuhOQ1k4
 
 ## URLs
 
@@ -35,7 +35,7 @@ cdk synth ts-lambda-stack-develop --no-staging > template.yaml
 cd deploy
 ```
 
-### SAM 
+### SAM
 
 ```
 sam local invoke <functionID> --no-event
