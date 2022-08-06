@@ -32,7 +32,7 @@ npm i -D @types/git-branch
 ```
 cdk list
 cdk synth ts-lambda-stack-develop --no-staging > template.yaml
-cd deploy
+cdk deploy
 ```
 
 ### SAM
