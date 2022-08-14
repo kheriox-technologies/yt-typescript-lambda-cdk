@@ -9,6 +9,7 @@ import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import * as cwLogs from 'aws-cdk-lib/aws-logs';
 
 import { getLambdaDefinitions, getFunctionProps } from './lambda-config';
+import { SubnetType } from 'aws-cdk-lib/aws-ec2';
 
 export class LambdaStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps, context: CDKContext) {
@@ -47,13 +48,35 @@ export class LambdaStack extends Stack {
       })
     );
 
-    // Import existing VPC based on VPC ID.
-    const vpc = ec2.Vpc.fromLookup(this, 'vpc', {
-      vpcId: context.vpc.id,
+    // Lambda VPC
+    const vpc = new ec2.Vpc(this, 'my-cdk-vpc', {
+      natGatewayProvider: ec2.NatProvider.instance({
+        instanceType: new ec2.InstanceType('t2.micro'),
+      }),
+      cidr: '10.0.0.0/16',
+      natGateways: 1,
+      maxAzs: 3,
+      subnetConfiguration: [
+        {
+          name: 'private-subnet-1',
+          subnetType: ec2.SubnetType.PRIVATE_WITH_NAT,
+          cidrMask: 24,
+        },
+        {
+          name: 'public-subnet-1',
+          subnetType: ec2.SubnetType.PUBLIC,
+          cidrMask: 24,
+        },
+        {
+          name: 'isolated-subnet-1',
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
+          cidrMask: 28,
+        },
+      ],
     });
 
     // Import privateSubnets
-    const privateSubnets = context.vpc.privateSubnetIds.map((id, index) => ec2.Subnet.fromSubnetId(this, `privateSubnet${index}`, id));
+    const privateSubnets = vpc.selectSubnets({subnetType: SubnetType.PRIVATE_ISOLATED}).subnets
 
     // Lambda Security Group
     const lambdaSG = new ec2.SecurityGroup(this, 'lambdaSG', {
@@ -61,7 +84,7 @@ export class LambdaStack extends Stack {
       allowAllOutbound: true,
       securityGroupName: `${context.appName}-lambda-security-group-${context.environment}`,
     });
-    lambdaSG.addIngressRule(ec2.Peer.ipv4(context.vpc.cidr), ec2.Port.allTcp(), 'Allow internal VPC traffic');
+    lambdaSG.addIngressRule(ec2.Peer.ipv4(vpc.vpcCidrBlock), ec2.Port.allTcp(), 'Allow internal VPC traffic');
 
     // Lambda Layer
     const lambdaLayer = new lambda.LayerVersion(this, 'lambdaLayer', {

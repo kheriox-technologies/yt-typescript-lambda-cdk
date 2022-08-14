@@ -22,12 +22,7 @@
       {
         "environment": "develop",
         "branchName": "develop",
-        "accountNumber": "612659717478",
-        "vpc": {
-          "id": "vpc-009efe79ac997c618",
-          "cidr": "10.3.0.0/16",
-          "privateSubnetIds": ["subnet-029d25ea0d0b6a906", "subnet-08b53dda246384b1f", "subnet-01a855a9fe96b9ded"]
-        }
+        "accountNumber": "084525917613"
       }
     ]
   }

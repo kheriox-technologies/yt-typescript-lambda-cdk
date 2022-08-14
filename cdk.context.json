@@ -71,5 +71,11 @@
         ]
       }
     ]
-  }
+  },
+  "availability-zones:account=084525917613:region=ap-southeast-2": [
+    "ap-southeast-2a",
+    "ap-southeast-2b",
+    "ap-southeast-2c"
+  ],
+  "ami:account=084525917613:filters.image-type.0=machine:filters.name.0=amzn-ami-vpc-nat-*:filters.state.0=available:owners.0=amazon:region=ap-southeast-2": "ami-0083b06a5ab61eabf"
 }

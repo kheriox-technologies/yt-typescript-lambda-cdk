@@ -17,6 +17,7 @@ Resources:
             - - "arn:"
               - Ref: AWS::Partition
               - :iam::aws:policy/ReadOnlyAccess
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
       RoleName: ts-lambda-lambda-role-develop
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/lambdaRole/Resource
@@ -39,6 +40,490 @@ Resources:
         - Ref: lambdaRoleC844FDB1
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/lambdaExecutionAccess/Resource
+  mycdkvpc037DA4AF:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      InstanceTenancy: default
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/Resource
+  mycdkvpcprivatesubnet1Subnet1Subnet2AC575F3:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2a
+      CidrBlock: 10.0.0.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: private-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Private
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet1
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet1/Subnet
+  mycdkvpcprivatesubnet1Subnet1RouteTable177610F7:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet1
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet1/RouteTable
+  mycdkvpcprivatesubnet1Subnet1RouteTableAssociation77852D9C:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcprivatesubnet1Subnet1RouteTable177610F7
+      SubnetId:
+        Ref: mycdkvpcprivatesubnet1Subnet1Subnet2AC575F3
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet1/RouteTableAssociation
+  mycdkvpcprivatesubnet1Subnet1DefaultRoute59820BDE:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcprivatesubnet1Subnet1RouteTable177610F7
+      DestinationCidrBlock: 0.0.0.0/0
+      InstanceId:
+        Ref: mycdkvpcpublicsubnet1Subnet1NatInstanceFAD98FD2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet1/DefaultRoute
+  mycdkvpcprivatesubnet1Subnet2Subnet31DF6881:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2b
+      CidrBlock: 10.0.1.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: private-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Private
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet2/Subnet
+  mycdkvpcprivatesubnet1Subnet2RouteTableACCA9D4B:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet2/RouteTable
+  mycdkvpcprivatesubnet1Subnet2RouteTableAssociation23019B28:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcprivatesubnet1Subnet2RouteTableACCA9D4B
+      SubnetId:
+        Ref: mycdkvpcprivatesubnet1Subnet2Subnet31DF6881
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet2/RouteTableAssociation
+  mycdkvpcprivatesubnet1Subnet2DefaultRouteBBC0D191:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcprivatesubnet1Subnet2RouteTableACCA9D4B
+      DestinationCidrBlock: 0.0.0.0/0
+      InstanceId:
+        Ref: mycdkvpcpublicsubnet1Subnet1NatInstanceFAD98FD2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet2/DefaultRoute
+  mycdkvpcprivatesubnet1Subnet3Subnet59A74060:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2c
+      CidrBlock: 10.0.2.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: private-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Private
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet3
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet3/Subnet
+  mycdkvpcprivatesubnet1Subnet3RouteTableC7B42A9E:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet3
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet3/RouteTable
+  mycdkvpcprivatesubnet1Subnet3RouteTableAssociation63708403:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcprivatesubnet1Subnet3RouteTableC7B42A9E
+      SubnetId:
+        Ref: mycdkvpcprivatesubnet1Subnet3Subnet59A74060
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet3/RouteTableAssociation
+  mycdkvpcprivatesubnet1Subnet3DefaultRouteE518E8A6:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcprivatesubnet1Subnet3RouteTableC7B42A9E
+      DestinationCidrBlock: 0.0.0.0/0
+      InstanceId:
+        Ref: mycdkvpcpublicsubnet1Subnet1NatInstanceFAD98FD2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/private-subnet-1Subnet3/DefaultRoute
+  mycdkvpcpublicsubnet1Subnet1Subnet8383DBBA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2a
+      CidrBlock: 10.0.3.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: public-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Public
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1/Subnet
+  mycdkvpcpublicsubnet1Subnet1RouteTableE1ABF705:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1/RouteTable
+  mycdkvpcpublicsubnet1Subnet1RouteTableAssociation160A4CBB:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcpublicsubnet1Subnet1RouteTableE1ABF705
+      SubnetId:
+        Ref: mycdkvpcpublicsubnet1Subnet1Subnet8383DBBA
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1/RouteTableAssociation
+  mycdkvpcpublicsubnet1Subnet1DefaultRoute1255C1C4:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcpublicsubnet1Subnet1RouteTableE1ABF705
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: mycdkvpcIGW4220D5A9
+    DependsOn:
+      - mycdkvpcVPCGW2444B783
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1/DefaultRoute
+  mycdkvpcpublicsubnet1Subnet1NatInstanceInstanceProfileC4D345CB:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Roles:
+        - Ref: mycdkvpcNatRoleED326004
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1/NatInstance/InstanceProfile
+  mycdkvpcpublicsubnet1Subnet1NatInstanceFAD98FD2:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: ap-southeast-2a
+      IamInstanceProfile:
+        Ref: mycdkvpcpublicsubnet1Subnet1NatInstanceInstanceProfileC4D345CB
+      ImageId: ami-0083b06a5ab61eabf
+      InstanceType: t2.micro
+      SecurityGroupIds:
+        - Fn::GetAtt:
+            - mycdkvpcNatSecurityGroupADDE007A
+            - GroupId
+      SourceDestCheck: false
+      SubnetId:
+        Ref: mycdkvpcpublicsubnet1Subnet1Subnet8383DBBA
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1/NatInstance
+      UserData:
+        Fn::Base64: "#!/bin/bash"
+    DependsOn:
+      - mycdkvpcNatRoleED326004
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet1/NatInstance/Resource
+  mycdkvpcpublicsubnet1Subnet2SubnetE104EC20:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2b
+      CidrBlock: 10.0.4.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: public-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Public
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet2/Subnet
+  mycdkvpcpublicsubnet1Subnet2RouteTable3099F008:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet2/RouteTable
+  mycdkvpcpublicsubnet1Subnet2RouteTableAssociation2ECC1C4A:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcpublicsubnet1Subnet2RouteTable3099F008
+      SubnetId:
+        Ref: mycdkvpcpublicsubnet1Subnet2SubnetE104EC20
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet2/RouteTableAssociation
+  mycdkvpcpublicsubnet1Subnet2DefaultRoute98E2F656:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcpublicsubnet1Subnet2RouteTable3099F008
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: mycdkvpcIGW4220D5A9
+    DependsOn:
+      - mycdkvpcVPCGW2444B783
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet2/DefaultRoute
+  mycdkvpcpublicsubnet1Subnet3Subnet0A0916F8:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2c
+      CidrBlock: 10.0.5.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: public-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Public
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet3
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet3/Subnet
+  mycdkvpcpublicsubnet1Subnet3RouteTableF66E029F:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet3
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet3/RouteTable
+  mycdkvpcpublicsubnet1Subnet3RouteTableAssociation8CC3E8C8:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcpublicsubnet1Subnet3RouteTableF66E029F
+      SubnetId:
+        Ref: mycdkvpcpublicsubnet1Subnet3Subnet0A0916F8
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet3/RouteTableAssociation
+  mycdkvpcpublicsubnet1Subnet3DefaultRouteD14D6107:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcpublicsubnet1Subnet3RouteTableF66E029F
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: mycdkvpcIGW4220D5A9
+    DependsOn:
+      - mycdkvpcVPCGW2444B783
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet3/DefaultRoute
+  mycdkvpcisolatedsubnet1Subnet1Subnet79DD3BAF:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2a
+      CidrBlock: 10.0.6.0/28
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: isolated-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Isolated
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1/Subnet
+  mycdkvpcisolatedsubnet1Subnet1RouteTable78317948:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1/RouteTable
+  mycdkvpcisolatedsubnet1Subnet1RouteTableAssociation0E10D4C9:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcisolatedsubnet1Subnet1RouteTable78317948
+      SubnetId:
+        Ref: mycdkvpcisolatedsubnet1Subnet1Subnet79DD3BAF
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1/RouteTableAssociation
+  mycdkvpcisolatedsubnet1Subnet2Subnet5C8345CD:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2b
+      CidrBlock: 10.0.6.16/28
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: isolated-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Isolated
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2/Subnet
+  mycdkvpcisolatedsubnet1Subnet2RouteTable69CCD17D:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2/RouteTable
+  mycdkvpcisolatedsubnet1Subnet2RouteTableAssociation416F7812:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcisolatedsubnet1Subnet2RouteTable69CCD17D
+      SubnetId:
+        Ref: mycdkvpcisolatedsubnet1Subnet2Subnet5C8345CD
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2/RouteTableAssociation
+  mycdkvpcisolatedsubnet1Subnet3Subnet4FECF22F:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      AvailabilityZone: ap-southeast-2c
+      CidrBlock: 10.0.6.32/28
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: isolated-subnet-1
+        - Key: aws-cdk:subnet-type
+          Value: Isolated
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3/Subnet
+  mycdkvpcisolatedsubnet1Subnet3RouteTableC720ED94:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3/RouteTable
+  mycdkvpcisolatedsubnet1Subnet3RouteTableAssociationFA1DBC11:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: mycdkvpcisolatedsubnet1Subnet3RouteTableC720ED94
+      SubnetId:
+        Ref: mycdkvpcisolatedsubnet1Subnet3Subnet4FECF22F
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3/RouteTableAssociation
+  mycdkvpcIGW4220D5A9:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/IGW
+  mycdkvpcVPCGW2444B783:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+      InternetGatewayId:
+        Ref: mycdkvpcIGW4220D5A9
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/VPCGW
+  mycdkvpcNatSecurityGroupADDE007A:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security Group for NAT instances
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Allow all outbound traffic by default
+          IpProtocol: "-1"
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          Description: from 0.0.0.0/0:ALL TRAFFIC
+          IpProtocol: "-1"
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc
+      VpcId:
+        Ref: mycdkvpc037DA4AF
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/NatSecurityGroup/Resource
+  mycdkvpcNatRoleED326004:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: Name
+          Value: ts-lambda-stack-develop/my-cdk-vpc
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/NatRole/Resource
   lambdaSG81E771DE:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -49,34 +534,38 @@ Resources:
           Description: Allow all outbound traffic by default
           IpProtocol: "-1"
       SecurityGroupIngress:
-        - CidrIp: 10.3.0.0/16
+        - CidrIp:
+            Fn::GetAtt:
+              - mycdkvpc037DA4AF
+              - CidrBlock
           Description: Allow internal VPC traffic
           FromPort: 0
           IpProtocol: tcp
           ToPort: 65535
-      VpcId: vpc-009efe79ac997c618
+      VpcId:
+        Ref: mycdkvpc037DA4AF
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/lambdaSG/Resource
   lambdaLayer857D4AF4:
     Type: AWS::Lambda::LayerVersion
     Properties:
       Content:
-        S3Bucket: cdk-hnb659fds-assets-612659717478-ap-southeast-2
+        S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
         S3Key: 5947d7a0930311fd47fce02ef60bb06e6dbd1f3dc3c89b1903215a7a66115127.zip
       CompatibleRuntimes:
         - nodejs14.x
       Description: Lambda Layer for ts-lambda
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/lambdaLayer/Resource
-      aws:asset:path: /Users/prasaddomala/GitRepos/kheriox/youtube/yt-typescript-lambda-cdk/lambda-layer
+      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/lambda-layer
       aws:asset:is-bundled: false
       aws:asset:property: Content
   publicfunctionfunction65B26B99:
     Type: AWS::Lambda::Function
     Properties:
       Code:
-        S3Bucket: cdk-hnb659fds-assets-612659717478-ap-southeast-2
-        S3Key: 6524c803778d6198de0d33beb43a5d9d948c0bdcb8e6209746f313c24c5d075a.zip
+        S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
+        S3Key: c2e04e02883487368749fd0bf5ce51e12bfd7cbb90cb5cc580921199ad28bea3.zip
       Role:
         Fn::GetAtt:
           - lambdaRoleC844FDB1
@@ -98,7 +587,7 @@ Resources:
       - lambdaRoleC844FDB1
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/public-function-function/Resource
-      aws:asset:path: /Users/prasaddomala/GitRepos/kheriox/youtube/yt-typescript-lambda-cdk/cdk.out/asset.6524c803778d6198de0d33beb43a5d9d948c0bdcb8e6209746f313c24c5d075a
+      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.c2e04e02883487368749fd0bf5ce51e12bfd7cbb90cb5cc580921199ad28bea3
       aws:asset:is-bundled: true
       aws:asset:property: Code
   fnpublicfunctionloggroupA0A81846:
@@ -106,16 +595,16 @@ Resources:
     Properties:
       LogGroupName: /aws/lambda/ts-lambda-public-function-develop
       RetentionInDays: 30
-    UpdateReplacePolicy: Retain
-    DeletionPolicy: Retain
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/fn-public-function-log-group/Resource
   privatefunctionfunctionB21CF630:
     Type: AWS::Lambda::Function
     Properties:
       Code:
-        S3Bucket: cdk-hnb659fds-assets-612659717478-ap-southeast-2
-        S3Key: c993b10b13f96d4647db0cf6a9a7019710b34f61600695d887ad66e144f8a93c.zip
+        S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
+        S3Key: 05a59cae174129a2674045ea36759a7846fcdb4f545768541b83270cdbeb810e.zip
       Role:
         Fn::GetAtt:
           - lambdaRoleC844FDB1
@@ -139,14 +628,14 @@ Resources:
               - lambdaSG81E771DE
               - GroupId
         SubnetIds:
-          - subnet-029d25ea0d0b6a906
-          - subnet-08b53dda246384b1f
-          - subnet-01a855a9fe96b9ded
+          - Ref: mycdkvpcisolatedsubnet1Subnet1Subnet79DD3BAF
+          - Ref: mycdkvpcisolatedsubnet1Subnet2Subnet5C8345CD
+          - Ref: mycdkvpcisolatedsubnet1Subnet3Subnet4FECF22F
     DependsOn:
       - lambdaRoleC844FDB1
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/private-function-function/Resource
-      aws:asset:path: /Users/prasaddomala/GitRepos/kheriox/youtube/yt-typescript-lambda-cdk/cdk.out/asset.c993b10b13f96d4647db0cf6a9a7019710b34f61600695d887ad66e144f8a93c
+      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.05a59cae174129a2674045ea36759a7846fcdb4f545768541b83270cdbeb810e
       aws:asset:is-bundled: true
       aws:asset:property: Code
   fnprivatefunctionloggroupFAA6666E:
@@ -154,14 +643,14 @@ Resources:
     Properties:
       LogGroupName: /aws/lambda/ts-lambda-private-function-develop
       RetentionInDays: 30
-    UpdateReplacePolicy: Retain
-    DeletionPolicy: Retain
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/fn-private-function-log-group/Resource
   CDKMetadata:
     Type: AWS::CDK::Metadata
     Properties:
-      Analytics: v2:deflate64:H4sIAAAAAAAA/11Qy2rDMBD8lt7Xm8SB3JNCeymluNCrUeStWVuWilZqMUb/HslJCu1pZvYx+6ix3uL2Qf1IpbuxMnzG5T0oPUIOtQurCZfGGYLHT7vimzOs5yKvLAHpOveQjp7D/Oxd/CrZP4EERk3nTuHyombyH+SFnS1l//VTtDpknkD2rRKhIHgskDWeoh4pnJTQza+1rqNB8HWFey8Y10se5frfbe48JWhIXPSaYLXNt/Zs+/W8WyJBccVBNt+7A+72+T2DMFc+2sATYXPFC6hrdxs6AQAA
+      Analytics: v2:deflate64:H4sIAAAAAAAA/11Ry26DMBD8lt6Nm9JDeyWRGlWqKkSqXKPFbKgJ2JF3nQgh/r3mkRD1NDu79szYG8t4JVdPcKVIFaeo1rnsdgzqJDIk651CEWaHTkMju8zWKDZHM2Jqa63agS7VpyEGozB19qhr7AWqWHb7sxqG+3QjUqcvwLjzuUEemkuVWc/4A/lkMfWXXkJklQbW1twPi9TnwXmWuHk/5phqRhcObIPvFdo5ycwSDm/9bdCw2KHyTnO7ddafxwiPjV7U0OQFyO4LWnR7dDRH+c8/vFFDzF7Q6wGIkEkmAwQu116dkNdAOOsdjC2wIvk9wu2uqG1JwcqW9zS3uu/FqBaWVGpTjp8xb6oXg5is6Pny8i7fwlor0jpy3rBuUGYT/gGgw1vW8gEAAA==
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/CDKMetadata/Default
 Parameters:
