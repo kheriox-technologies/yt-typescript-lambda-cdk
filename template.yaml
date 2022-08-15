@@ -551,7 +551,7 @@ Resources:
     Properties:
       Content:
         S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: 5947d7a0930311fd47fce02ef60bb06e6dbd1f3dc3c89b1903215a7a66115127.zip
+        S3Key: ddca8a7af216f583f9b56696a6d6b3c685eb715dc4fe0e4bed4c98679c3e9b9b.zip
       CompatibleRuntimes:
         - nodejs14.x
       Description: Lambda Layer for ts-lambda
@@ -560,12 +560,12 @@ Resources:
       aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/lambda-layer
       aws:asset:is-bundled: false
       aws:asset:property: Content
-  publicfunctionfunction65B26B99:
+  publicfunction1function7DA374D8:
     Type: AWS::Lambda::Function
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: c2e04e02883487368749fd0bf5ce51e12bfd7cbb90cb5cc580921199ad28bea3.zip
+        S3Key: 5ae4e0d5ff2c9542cc73c313f218b573f99de846d301b4d3f56d09d5d9d8fa21.zip
       Role:
         Fn::GetAtt:
           - lambdaRoleC844FDB1
@@ -576,7 +576,7 @@ Resources:
           ENV: develop
           GIT_BRANCH: develop
           AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
-      FunctionName: ts-lambda-public-function-develop
+      FunctionName: ts-lambda-public-function-1-develop
       Handler: index.handler
       Layers:
         - Ref: lambdaLayer857D4AF4
@@ -586,25 +586,39 @@ Resources:
     DependsOn:
       - lambdaRoleC844FDB1
     Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/public-function-function/Resource
-      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.c2e04e02883487368749fd0bf5ce51e12bfd7cbb90cb5cc580921199ad28bea3
+      aws:cdk:path: ts-lambda-stack-develop/public-function-1-function/Resource
+      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.5ae4e0d5ff2c9542cc73c313f218b573f99de846d301b4d3f56d09d5d9d8fa21
       aws:asset:is-bundled: true
       aws:asset:property: Code
-  fnpublicfunctionloggroupA0A81846:
+  public1FunctionUrl:
+    Type: AWS::Lambda::Url
+    Properties:
+      TargetFunctionArn:
+        Fn::GetAtt:
+          - publicfunction1function7DA374D8
+          - Arn
+      AuthType: NONE
+      Cors:
+        AllowCredentials: false
+        AllowOrigins:
+          - "*"
+    Metadata:
+      aws:cdk:path: ts-lambda-stack-develop/public1FunctionUrl
+  fnpublicfunction1loggroup65A89AD3:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: /aws/lambda/ts-lambda-public-function-develop
+      LogGroupName: /aws/lambda/ts-lambda-public-function-1-develop
       RetentionInDays: 30
     UpdateReplacePolicy: Delete
     DeletionPolicy: Delete
     Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/fn-public-function-log-group/Resource
+      aws:cdk:path: ts-lambda-stack-develop/fn-public-function-1-log-group/Resource
   privatefunctionfunctionB21CF630:
     Type: AWS::Lambda::Function
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: 05a59cae174129a2674045ea36759a7846fcdb4f545768541b83270cdbeb810e.zip
+        S3Key: ad1660a515ae159149ebf9580a1b4f2e2f4421de93c8e904a087317070d059f4.zip
       Role:
         Fn::GetAtt:
           - lambdaRoleC844FDB1
@@ -635,7 +649,7 @@ Resources:
       - lambdaRoleC844FDB1
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/private-function-function/Resource
-      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.05a59cae174129a2674045ea36759a7846fcdb4f545768541b83270cdbeb810e
+      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.ad1660a515ae159149ebf9580a1b4f2e2f4421de93c8e904a087317070d059f4
       aws:asset:is-bundled: true
       aws:asset:property: Code
   fnprivatefunctionloggroupFAA6666E:

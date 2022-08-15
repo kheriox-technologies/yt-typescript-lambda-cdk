@@ -10,7 +10,7 @@ Youtube Video: https://youtu.be/DUNEuhOQ1k4
 
 Multi Env CDK Youtube Video: https://youtu.be/H7Ynxkk_jss
 
-Git Repo: https://github.com/kheriox-technologies/yt-typescript-lambda-cdk
+Git Repo: https://github.com/kheriox-technologies/typescript-lambda-cdk
 
 AWS Profile NPM Package: https://www.npmjs.com/package/awsprofile
 

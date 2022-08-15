@@ -1,8 +1,8 @@
 {
-  "name": "yt-typescript-lambda-cdk",
+  "name": "typescript-lambda-cdk",
   "version": "0.1.0",
   "bin": {
-    "yt-typescript-lambda-cdk": "bin/yt-typescript-lambda-cdk.js"
+    "typescript-lambda-cdk": "bin/typescript-lambda-cdk.js"
   },
   "scripts": {
     "build": "tsc",
@@ -11,7 +11,7 @@
     "cdk": "cdk"
   },
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.93",
+    "@types/aws-lambda": "^8.10.102",
     "@types/git-branch": "^2.0.2",
     "@types/jest": "^26.0.10",
     "@types/node": "10.17.27",
@@ -22,6 +22,10 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
+    "@aws-lambda-powertools/logger": "^1.1.0",
+    "@aws-lambda-powertools/metrics": "^1.1.0",
+    "@aws-lambda-powertools/tracer": "^1.1.0",
+    "@middy/core": "^3.2.0",
     "aws-cdk-lib": "2.20.0",
     "aws-lambda": "^1.0.7",
     "constructs": "^10.0.0",
