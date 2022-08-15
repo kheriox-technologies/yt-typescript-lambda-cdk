@@ -10,7 +10,6 @@ const lambdaHandler: Handler = async (event, context) => {
   return new Promise<string>(async (resolve, reject) => {
     try {
       // Lambda handler code goes here
-      //utils.logInfo('This is a Public Function');
 
       const data = {
         name: "thilanga",
@@ -22,8 +21,6 @@ const lambdaHandler: Handler = async (event, context) => {
       return resolve("This is a Public Function");
     } catch (error) {
       logger.error("Products retrieved", { error });
-
-      //utils.logError(error);
       reject();
     }
   });
