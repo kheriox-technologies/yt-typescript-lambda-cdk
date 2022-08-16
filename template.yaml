@@ -365,114 +365,6 @@ Resources:
       - mycdkvpcVPCGW2444B783
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/public-subnet-1Subnet3/DefaultRoute
-  mycdkvpcisolatedsubnet1Subnet1Subnet79DD3BAF:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId:
-        Ref: mycdkvpc037DA4AF
-      AvailabilityZone: ap-southeast-2a
-      CidrBlock: 10.0.6.0/28
-      MapPublicIpOnLaunch: false
-      Tags:
-        - Key: aws-cdk:subnet-name
-          Value: isolated-subnet-1
-        - Key: aws-cdk:subnet-type
-          Value: Isolated
-        - Key: Name
-          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1/Subnet
-  mycdkvpcisolatedsubnet1Subnet1RouteTable78317948:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId:
-        Ref: mycdkvpc037DA4AF
-      Tags:
-        - Key: Name
-          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1/RouteTable
-  mycdkvpcisolatedsubnet1Subnet1RouteTableAssociation0E10D4C9:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId:
-        Ref: mycdkvpcisolatedsubnet1Subnet1RouteTable78317948
-      SubnetId:
-        Ref: mycdkvpcisolatedsubnet1Subnet1Subnet79DD3BAF
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet1/RouteTableAssociation
-  mycdkvpcisolatedsubnet1Subnet2Subnet5C8345CD:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId:
-        Ref: mycdkvpc037DA4AF
-      AvailabilityZone: ap-southeast-2b
-      CidrBlock: 10.0.6.16/28
-      MapPublicIpOnLaunch: false
-      Tags:
-        - Key: aws-cdk:subnet-name
-          Value: isolated-subnet-1
-        - Key: aws-cdk:subnet-type
-          Value: Isolated
-        - Key: Name
-          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2/Subnet
-  mycdkvpcisolatedsubnet1Subnet2RouteTable69CCD17D:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId:
-        Ref: mycdkvpc037DA4AF
-      Tags:
-        - Key: Name
-          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2/RouteTable
-  mycdkvpcisolatedsubnet1Subnet2RouteTableAssociation416F7812:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId:
-        Ref: mycdkvpcisolatedsubnet1Subnet2RouteTable69CCD17D
-      SubnetId:
-        Ref: mycdkvpcisolatedsubnet1Subnet2Subnet5C8345CD
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet2/RouteTableAssociation
-  mycdkvpcisolatedsubnet1Subnet3Subnet4FECF22F:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId:
-        Ref: mycdkvpc037DA4AF
-      AvailabilityZone: ap-southeast-2c
-      CidrBlock: 10.0.6.32/28
-      MapPublicIpOnLaunch: false
-      Tags:
-        - Key: aws-cdk:subnet-name
-          Value: isolated-subnet-1
-        - Key: aws-cdk:subnet-type
-          Value: Isolated
-        - Key: Name
-          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3/Subnet
-  mycdkvpcisolatedsubnet1Subnet3RouteTableC720ED94:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId:
-        Ref: mycdkvpc037DA4AF
-      Tags:
-        - Key: Name
-          Value: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3/RouteTable
-  mycdkvpcisolatedsubnet1Subnet3RouteTableAssociationFA1DBC11:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      RouteTableId:
-        Ref: mycdkvpcisolatedsubnet1Subnet3RouteTableC720ED94
-      SubnetId:
-        Ref: mycdkvpcisolatedsubnet1Subnet3Subnet4FECF22F
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/my-cdk-vpc/isolated-subnet-1Subnet3/RouteTableAssociation
   mycdkvpcIGW4220D5A9:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -551,21 +443,21 @@ Resources:
     Properties:
       Content:
         S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: ff50919e1db4ccf928887f93a411ea791af6b6bc9c77386e8113ce560254acf8.zip
+        S3Key: c0cf70869503986cc6df82a39e1b51c690e04975190a2a04d6a765485868d5d8.zip
       CompatibleRuntimes:
         - nodejs14.x
       Description: Lambda Layer for ts-lambda
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/lambdaLayer/Resource
-      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/lambda-layer
+      aws:asset:path: asset.c0cf70869503986cc6df82a39e1b51c690e04975190a2a04d6a765485868d5d8
       aws:asset:is-bundled: false
       aws:asset:property: Content
-  publicfunction1function7DA374D8:
+  demofunction1function0E1FA0AD:
     Type: AWS::Lambda::Function
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: 90ae1a69cf0110a31c172916d85c7f855bd034a4588e9672d09929ae2cd1e825.zip
+        S3Key: 8c26cde7c71a3b37b268a35d4ab339f843666f787a396809ef8233fb61f26715.zip
       Role:
         Fn::GetAtt:
           - lambdaRoleC844FDB1
@@ -576,13 +468,13 @@ Resources:
           ENV: develop
           GIT_BRANCH: develop
           AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
-      FunctionName: ts-lambda-public-function-1-develop
+      FunctionName: ts-lambda-demo-function-1-develop
       Handler: index.handler
       Layers:
         - Ref: lambdaLayer857D4AF4
-      MemorySize: 1024
+      MemorySize: 2048
       Runtime: nodejs14.x
-      Timeout: 900
+      Timeout: 300
       VpcConfig:
         SecurityGroupIds:
           - Fn::GetAtt:
@@ -595,76 +487,29 @@ Resources:
     DependsOn:
       - lambdaRoleC844FDB1
     Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/public-function-1-function/Resource
-      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.90ae1a69cf0110a31c172916d85c7f855bd034a4588e9672d09929ae2cd1e825
+      aws:cdk:path: ts-lambda-stack-develop/demo-function-1-function/Resource
+      aws:asset:path: asset.8c26cde7c71a3b37b268a35d4ab339f843666f787a396809ef8233fb61f26715
       aws:asset:is-bundled: true
       aws:asset:property: Code
-  public1FunctionUrl:
+  private1FunctionUrl:
     Type: AWS::Lambda::Url
     Properties:
       TargetFunctionArn:
         Fn::GetAtt:
-          - publicfunction1function7DA374D8
+          - demofunction1function0E1FA0AD
           - Arn
-      AuthType: NONE
+      AuthType: AWS_IAM
       Cors:
-        AllowCredentials: false
+        AllowMethods:
+          - GET
         AllowOrigins:
           - "*"
     Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/public1FunctionUrl
-  fnpublicfunction1loggroup65A89AD3:
-    Type: AWS::Logs::LogGroup
-    Properties:
-      LogGroupName: /aws/lambda/ts-lambda-public-function-1-develop
-      RetentionInDays: 30
-    UpdateReplacePolicy: Delete
-    DeletionPolicy: Delete
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/fn-public-function-1-log-group/Resource
-  privatefunctionfunctionB21CF630:
-    Type: AWS::Lambda::Function
-    Properties:
-      Code:
-        S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: ad1660a515ae159149ebf9580a1b4f2e2f4421de93c8e904a087317070d059f4.zip
-      Role:
-        Fn::GetAtt:
-          - lambdaRoleC844FDB1
-          - Arn
-      Environment:
-        Variables:
-          REGION: ap-southeast-2
-          ENV: develop
-          GIT_BRANCH: develop
-          AWS_NODEJS_CONNECTION_REUSE_ENABLED: "1"
-      FunctionName: ts-lambda-private-function-develop
-      Handler: index.handler
-      Layers:
-        - Ref: lambdaLayer857D4AF4
-      MemorySize: 2048
-      Runtime: nodejs14.x
-      Timeout: 300
-    DependsOn:
-      - lambdaRoleC844FDB1
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/private-function-function/Resource
-      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.ad1660a515ae159149ebf9580a1b4f2e2f4421de93c8e904a087317070d059f4
-      aws:asset:is-bundled: true
-      aws:asset:property: Code
-  fnprivatefunctionloggroupFAA6666E:
-    Type: AWS::Logs::LogGroup
-    Properties:
-      LogGroupName: /aws/lambda/ts-lambda-private-function-develop
-      RetentionInDays: 30
-    UpdateReplacePolicy: Delete
-    DeletionPolicy: Delete
-    Metadata:
-      aws:cdk:path: ts-lambda-stack-develop/fn-private-function-log-group/Resource
+      aws:cdk:path: ts-lambda-stack-develop/private1FunctionUrl
   CDKMetadata:
     Type: AWS::CDK::Metadata
     Properties:
-      Analytics: v2:deflate64:H4sIAAAAAAAA/11Ry26DMBD8lt6Nm9JDeyWRGlWqKkSqXKPFbKgJ2JF3nQgh/r3mkRD1NDu79szYG8t4JVdPcKVIFaeo1rnsdgzqJDIk651CEWaHTkMju8zWKDZHM2Jqa63agS7VpyEGozB19qhr7AWqWHb7sxqG+3QjUqcvwLjzuUEemkuVWc/4A/lkMfWXXkJklQbW1twPi9TnwXmWuHk/5phqRhcObIPvFdo5ycwSDm/9bdCw2KHyTnO7ddafxwiPjV7U0OQFyO4LWnR7dDRH+c8/vFFDzF7Q6wGIkEkmAwQu116dkNdAOOsdjC2wIvk9wu2uqG1JwcqW9zS3uu/FqBaWVGpTjp8xb6oXg5is6Pny8i7fwlor0jpy3rBuUGYT/gGgw1vW8gEAAA==
+      Analytics: v2:deflate64:H4sIAAAAAAAA/11Ry07DMBD8Fu6uKeEA17YSFRJCUYJyjTbOtjgPu/KuW0VR/h3nAak47c7sY2a1kYy2cvsAN9qost40upB9yqBqkSBZ7xSKUMt7Da3sE9ugOJzMFGPbaNWNcM3eDTEYhbGzJ93gIFBFss8uaixm8UHETl+BMfWFQR7JNUusZ/yCYpaY+ZXbEVmlgbU1f80i9kVQXlb8at/7mHNGFxqOQfcG3eJkQTsOt363aFikqLzT3B2d9ZfJwj0xiAbaogTZf0CHLkNHi5X/+M0bNdocBD3nQIRMcjeGgOXeqxp5D4TLvtzYEiuSn1NYZ6eJ8IizNufp4OUbgxgHZEWP16dX+RJeV5HWG+cN6xZlMscfApeuydYBAAA=
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/CDKMetadata/Default
 Parameters:

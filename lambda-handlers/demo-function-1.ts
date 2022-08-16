@@ -7,23 +7,28 @@ import { injectLambdaContext } from "@aws-lambda-powertools/logger";
 import { logMetrics, MetricUnits } from "@aws-lambda-powertools/metrics";
 
 const lambdaHandler: Handler = async (event, context) => {
+
+  logger.info('Incoming Request:', { event });
+
+  // if (event.requestContext !== "GET") {
+  //   throw new Error(
+  //     `This endpoint only accepts GET method, you tried: ${event.httpMethod}`
+  //   );
+  // }
+
   return new Promise<string>(async (resolve, reject) => {
     try {
-      // Lambda handler code goes here
-
       const data = {
         name: "thilanga",
       };
 
-      logger.info("Products retrieved", { data });
-      metrics.addMetric("productsRetrieved", MetricUnits.Count, 1);
-
-      tracer.putAnnotation('awsRequestId', context.awsRequestId)
-      tracer.putMetadata('eventPayload', event)
+      logger.debug("Data retrieved", { data });
 
       return resolve("This is a Public Function");
     } catch (error) {
-      logger.error("Products retrieved", { error });
+      tracer.addErrorAsMetadata(error as Error);
+      logger.error("Error reading data. " + error);
+
       reject();
     }
   });
@@ -31,10 +36,7 @@ const lambdaHandler: Handler = async (event, context) => {
 
 const handler = middy(lambdaHandler)
   .use(captureLambdaHandler(tracer))
-  .use(logMetrics(metrics, { captureColdStartMetric: true }))
-  .use(injectLambdaContext(logger, { clearState: true }));
+  .use(logMetrics(metrics))
+  .use(injectLambdaContext(logger));
 
 export { handler };
-// export const handler = middy(lambdaHandler).use(
-//   injectLambdaContext(logger, { logEvent: true })
-// );

@@ -14,22 +14,19 @@ export const getLambdaDefinitions = (
 ): LambdaDefinition[] => {
   const lambdaDefinitions: LambdaDefinition[] = [
     {
-      name: "public-function-1",
-      environment: {
-        REGION: context.region,
-        ENV: context.environment,
-        GIT_BRANCH: context.branchName,
-      },
-      isPrivate: false,
-    },
-    {
-      name: "private-function",
+      name: "demo-function-1",
       memoryMB: 2048,
       timeoutMins: 5,
       environment: {
         REGION: context.region,
         ENV: context.environment,
         GIT_BRANCH: context.branchName,
+        POWERTOOLS_SERVICE_NAME: 'cnc_demo',
+        POWERTOOLS_METRICS_NAMESPACE: 'contino',
+        POWERTOOLS_TRACE_ENABLED: 'true',
+        POWERTOOLS_LOGGER_LOG_EVENT: 'true',
+
+
       },
       isPrivate: true,
     },

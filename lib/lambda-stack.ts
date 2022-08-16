@@ -6,10 +6,10 @@ import * as iam from "aws-cdk-lib/aws-iam";
 import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import { NodejsFunction } from "aws-cdk-lib/aws-lambda-nodejs";
-import * as cwLogs from "aws-cdk-lib/aws-logs";
 
 import { getLambdaDefinitions, getFunctionProps } from "./lambda-config";
 import { SubnetType } from "aws-cdk-lib/aws-ec2";
+import { HttpMethod } from "aws-cdk-lib/aws-events";
 
 export class LambdaStack extends Stack {
   constructor(
@@ -74,11 +74,6 @@ export class LambdaStack extends Stack {
           subnetType: ec2.SubnetType.PUBLIC,
           cidrMask: 24,
         },
-        {
-          name: "isolated-subnet-1",
-          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-          cidrMask: 28,
-        },
       ],
     });
 
@@ -120,7 +115,7 @@ export class LambdaStack extends Stack {
       );
 
       // Check if function is private and add VPC, SG and Subnets
-      if (!lambdaDefinition.isPrivate) {
+      if (lambdaDefinition.isPrivate) {
         functionProps = {
           ...functionProps,
           vpc: vpc,
@@ -138,27 +133,20 @@ export class LambdaStack extends Stack {
         functionProps
       );
 
-      // Create function URL for private2 function
-      if (lambdaDefinition.name === "public-function-1") {
-        new CfnResource(this, "public1FunctionUrl", {
+      // Create function URL for private1 function
+      if (lambdaDefinition.name === "demo-function-1") {
+        new CfnResource(this, "private1FunctionUrl", {
           type: "AWS::Lambda::Url",
           properties: {
             TargetFunctionArn: lambdaFunction.functionArn,
-            AuthType: 'NONE',
+            AuthType: "AWS_IAM",
             Cors: {
-              AllowCredentials: false,
-              AllowOrigins: ['*'],
+              AllowMethods: [HttpMethod.GET],
+              AllowOrigins: ["*"],
             },
           },
         });
       }
-
-      // Create corresponding Log Group with one month retention
-      new cwLogs.LogGroup(this, `fn-${lambdaDefinition.name}-log-group`, {
-        logGroupName: `/aws/lambda/${context.appName}-${lambdaDefinition.name}-${context.environment}`,
-        retention: cwLogs.RetentionDays.ONE_MONTH,
-        removalPolicy: RemovalPolicy.DESTROY,
-      });
     }
   }
 }
