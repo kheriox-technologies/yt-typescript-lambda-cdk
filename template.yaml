@@ -551,7 +551,7 @@ Resources:
     Properties:
       Content:
         S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: ddca8a7af216f583f9b56696a6d6b3c685eb715dc4fe0e4bed4c98679c3e9b9b.zip
+        S3Key: ff50919e1db4ccf928887f93a411ea791af6b6bc9c77386e8113ce560254acf8.zip
       CompatibleRuntimes:
         - nodejs14.x
       Description: Lambda Layer for ts-lambda
@@ -565,7 +565,7 @@ Resources:
     Properties:
       Code:
         S3Bucket: cdk-hnb659fds-assets-084525917613-ap-southeast-2
-        S3Key: 5ae4e0d5ff2c9542cc73c313f218b573f99de846d301b4d3f56d09d5d9d8fa21.zip
+        S3Key: 90ae1a69cf0110a31c172916d85c7f855bd034a4588e9672d09929ae2cd1e825.zip
       Role:
         Fn::GetAtt:
           - lambdaRoleC844FDB1
@@ -583,11 +583,20 @@ Resources:
       MemorySize: 1024
       Runtime: nodejs14.x
       Timeout: 900
+      VpcConfig:
+        SecurityGroupIds:
+          - Fn::GetAtt:
+              - lambdaSG81E771DE
+              - GroupId
+        SubnetIds:
+          - Ref: mycdkvpcprivatesubnet1Subnet1Subnet2AC575F3
+          - Ref: mycdkvpcprivatesubnet1Subnet2Subnet31DF6881
+          - Ref: mycdkvpcprivatesubnet1Subnet3Subnet59A74060
     DependsOn:
       - lambdaRoleC844FDB1
     Metadata:
       aws:cdk:path: ts-lambda-stack-develop/public-function-1-function/Resource
-      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.5ae4e0d5ff2c9542cc73c313f218b573f99de846d301b4d3f56d09d5d9d8fa21
+      aws:asset:path: /Users/thilangapitigala/project/typescript-lambda-cdk/cdk.out/asset.90ae1a69cf0110a31c172916d85c7f855bd034a4588e9672d09929ae2cd1e825
       aws:asset:is-bundled: true
       aws:asset:property: Code
   public1FunctionUrl:
@@ -636,15 +645,6 @@ Resources:
       MemorySize: 2048
       Runtime: nodejs14.x
       Timeout: 300
-      VpcConfig:
-        SecurityGroupIds:
-          - Fn::GetAtt:
-              - lambdaSG81E771DE
-              - GroupId
-        SubnetIds:
-          - Ref: mycdkvpcisolatedsubnet1Subnet1Subnet79DD3BAF
-          - Ref: mycdkvpcisolatedsubnet1Subnet2Subnet5C8345CD
-          - Ref: mycdkvpcisolatedsubnet1Subnet3Subnet4FECF22F
     DependsOn:
       - lambdaRoleC844FDB1
     Metadata:

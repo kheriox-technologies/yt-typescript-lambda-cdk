@@ -84,7 +84,7 @@ export class LambdaStack extends Stack {
 
     // Import privateSubnets
     const privateSubnets = vpc.selectSubnets({
-      subnetType: SubnetType.PRIVATE_ISOLATED,
+      subnetType: SubnetType.PRIVATE_WITH_NAT,
     }).subnets;
 
     // Lambda Security Group
@@ -120,7 +120,7 @@ export class LambdaStack extends Stack {
       );
 
       // Check if function is private and add VPC, SG and Subnets
-      if (lambdaDefinition.isPrivate) {
+      if (!lambdaDefinition.isPrivate) {
         functionProps = {
           ...functionProps,
           vpc: vpc,
@@ -144,10 +144,10 @@ export class LambdaStack extends Stack {
           type: "AWS::Lambda::Url",
           properties: {
             TargetFunctionArn: lambdaFunction.functionArn,
-            AuthType: "NONE",
+            AuthType: 'NONE',
             Cors: {
               AllowCredentials: false,
-              AllowOrigins: ["*"],
+              AllowOrigins: ['*'],
             },
           },
         });
